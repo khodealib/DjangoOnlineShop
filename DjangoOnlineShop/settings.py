@@ -49,7 +49,9 @@ LOCAL_APPS = [
     "accounts.apps.AccountConfig",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'storages'
+]
 
 DEV_APPS = [
     "debug_toolbar",
@@ -166,3 +168,33 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "accounts.auth.PhoneNumberBackend",
 ]
+
+# Arvan Bucket Setting
+AWS_S3_ACCESS_KEY_ID = '86ba9fdb-e795-46f9-abee-e059f6a4a51e'
+AWS_S3_SECRET_ACCESS_KEY = 'e4e5d223821febaea0a6ba24fcd7077b580afb0eb0a7f33d37c45320046787b1'
+
+# Basic Storage configuration for Amazon S3 (Irrespective of Django versions)
+AWS_STORAGE_BUCKET_NAME = 'alib-shop'  # - Enter your S3 bucket name HERE
+AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
+AWS_S3_FILE_OVERWRITE = False
+
+# Django < 4.2
+'''
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+'''
+
+# Django 4.2 >
+STORAGES = {
+    # Media file (image) management   
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+    },
+    # CSS and JS file management
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+    # "staticfiles": {
+    #     "BACKEND": "storages.backends.s3.S3Storage",
+    # },
+}

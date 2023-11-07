@@ -1,5 +1,6 @@
 Django==4.2
 kavenegar==1.1.2
 python-decouple==3.8
+django-storages[s3]==1.14.2
 django-debug-toolbar
 Pillow
