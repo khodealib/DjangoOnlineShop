@@ -149,4 +149,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-KAVENEGAR_APIKEY = config('KAVENEGAR_APIKEY')
+KAVENEGAR_APIKEY = config('KAVENEGAR_APIKEY', default='')

@@ -64,7 +64,7 @@ class UserRegistrationVerifyCode(View):
                     code_instance.delete()
                     messages.error(
                         request,
-                        'this code is expire, please complete register form again.',
+                        'This code is expire, please complete register form again.',
                         'danger'
                     )
                     return redirect('accounts:user_register')

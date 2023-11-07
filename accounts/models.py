@@ -1,7 +1,6 @@
-import datetime
-
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
+from django.utils import timezone
 
 from accounts.managers import UserManager
 
@@ -42,9 +41,10 @@ class OtpCode(models.Model):
 
     @property
     def is_expire(self):
-        expired = self.created + datetime.timedelta(minutes=2)
-        now = datetime.datetime.now()
+        expired = self.created + timezone.timedelta(minutes=2)
+        now = timezone.now()
+        print(f'now: {now} - expired-at: {expired}')
+        print('*' * 30)
         if now > expired:
-            return False
-        return True
-
+            return True
+        return False
