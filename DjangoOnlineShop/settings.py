@@ -147,13 +147,19 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static/'
 ]
 
+# Media Files
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# OTP
 KAVENEGAR_APIKEY = config('KAVENEGAR_APIKEY', default='')
 
+# Login
 LOGIN_URL = 'accounts:user_login'
 
 AUTHENTICATION_BACKENDS = [
