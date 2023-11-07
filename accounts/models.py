@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
 
@@ -28,3 +30,21 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class OtpCode(models.Model):
+    phone_number = models.CharField(max_length=11)
+    code = models.PositiveSmallIntegerField()
+    created = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.phone_number} - {self.code} - {self.created}'
+
+    @property
+    def is_expire(self):
+        expired = self.created + datetime.timedelta(minutes=2)
+        now = datetime.datetime.now()
+        if now > expired:
+            return False
+        return True
+

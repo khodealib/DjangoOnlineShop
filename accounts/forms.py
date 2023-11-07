@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.core.exceptions import ValidationError
 
 from accounts.models import User
 
@@ -34,3 +35,28 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'phone_number', 'full_name', 'password', 'last_login')
+
+
+class UserRegistrationForm(forms.Form):
+    email = forms.EmailField()
+    full_name = forms.CharField(label='full name')
+    phone = forms.CharField(max_length=11)
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        user = User.objects.filter(email=email)
+        if user.exists():
+            raise ValidationError('This email already exist.')
+        return email
+
+    def clean_phone(self):
+        phone = self.cleaned_data['phone']
+        user = User.objects.filter(phone_number=phone)
+        if user.exists():
+            raise ValidationError('This phone number already exist.')
+        return phone
+
+
+class VerifyCodeForm(forms.Form):
+    code = forms.IntegerField()

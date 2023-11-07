@@ -1,2 +1,4 @@
 Django==4.2
+kavenegar==1.1.2
+python-decouple==3.8
 django-debug-toolbar
