@@ -9,10 +9,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
 from pathlib import Path
 
 from decouple import config
+from django.utils import timezone
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,8 +84,7 @@ ROOT_URLCONF = 'DjangoOnlineShop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -177,7 +176,7 @@ AWS_S3_SECRET_ACCESS_KEY = 'e4e5d223821febaea0a6ba24fcd7077b580afb0eb0a7f33d37c4
 AWS_STORAGE_BUCKET_NAME = 'alib-shop'  # - Enter your S3 bucket name HERE
 AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
 AWS_S3_FILE_OVERWRITE = False
-
+AWS_SERVICE_NAME = 's3'
 # Django < 4.2
 '''
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -198,3 +197,13 @@ STORAGES = {
     #     "BACKEND": "storages.backends.s3.S3Storage",
     # },
 }
+
+# Celery configs
+BROKER_URL = 'amqp://rabbitmq'
+CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'pickle'
+CELERY_ACCEPT_CONTENT = ['json', 'pickle']
+CELERY_RESULT_EXPIRES = timezone.timedelta(days=1)
+CELERY_TASK_ALWAYS_EAGER = False
+CELERYD_PREFETCH_MULTIPLIER = 4

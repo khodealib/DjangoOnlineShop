@@ -1,6 +1,8 @@
 Django==4.2
 kavenegar==1.1.2
 python-decouple==3.8
-django-storages[s3]==1.14.2
+boto3==1.28.79
+django-storages==1.14.2
+celery==5.3.4
 django-debug-toolbar
 Pillow
