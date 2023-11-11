@@ -1,18 +1,17 @@
-import logging
-
 import boto3
 from django.conf import settings
-
-logging.basicConfig(level=logging.INFO)
 
 
 class BucketManager:
     """**CDN Bucket manager**
-
-    init method create connection.
+    NOTE:
+        none of these methods are async. use public interface in tasks.py modules instead.
     """
 
     def __init__(self):
+        """init method
+        create connection instance to connect S3 object storage.
+        """
         session = boto3.session.Session()
         self.connection = session.client(
             service_name=settings.AWS_SERVICE_NAME,
@@ -21,7 +20,10 @@ class BucketManager:
             endpoint_url=settings.AWS_S3_ENDPOINT_URL
         )
 
-    def get_objects(self):
+    def get_objects(self) -> dict | None:
+        """
+        get all object in our bucket, if exist return dict of objects or None.
+        """
         result = self.connection.list_objects_v2(Bucket=settings.AWS_STORAGE_BUCKET_NAME)
         if result['KeyCount']:
             return result['Contents']
