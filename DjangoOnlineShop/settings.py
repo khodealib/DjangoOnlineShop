@@ -177,6 +177,7 @@ AWS_STORAGE_BUCKET_NAME = 'alib-shop'  # - Enter your S3 bucket name HERE
 AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
 AWS_S3_FILE_OVERWRITE = False
 AWS_SERVICE_NAME = 's3'
+AWS_LOCAL_STORAGE = 'aws'
 # Django < 4.2
 '''
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -200,6 +201,7 @@ STORAGES = {
 
 # Celery configs
 BROKER_URL = 'amqp://rabbitmq'
+CELERY_TIMEZONE = "Asia/Tehran"
 CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'pickle'

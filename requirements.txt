@@ -1,4 +1,4 @@
-Django==4.2
+Django==4.2.7
 kavenegar==1.1.2
 python-decouple==3.8
 boto3==1.28.79
