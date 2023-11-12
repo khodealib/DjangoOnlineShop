@@ -22,7 +22,7 @@
           <td>{{ object.Key }}</td>
           <td>{{ object.Size|filesizeformat }}</td>
           <td>download</td>
-          <td>delete</td>
+          <td><a href="{% url 'home:bucket_delete_object' object.Key %}">delete</a></td>
         </tr>
       {% endfor %}
 

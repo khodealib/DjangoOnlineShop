@@ -198,14 +198,3 @@ STORAGES = {
     #     "BACKEND": "storages.backends.s3.S3Storage",
     # },
 }
-
-# Celery configs
-BROKER_URL = 'amqp://rabbitmq'
-CELERY_TIMEZONE = "Asia/Tehran"
-CELERY_RESULT_BACKEND = 'rpc://'
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'pickle'
-CELERY_ACCEPT_CONTENT = ['json', 'pickle']
-CELERY_RESULT_EXPIRES = timezone.timedelta(days=1)
-CELERY_TASK_ALWAYS_EAGER = False
-CELERYD_PREFETCH_MULTIPLIER = 4

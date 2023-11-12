@@ -29,5 +29,9 @@ class BucketManager:
             return result['Contents']
         return None
 
+    def delete_object(self, key):
+        self.connection.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=key)
+        return True
+
 
 bucket_manager = BucketManager()
