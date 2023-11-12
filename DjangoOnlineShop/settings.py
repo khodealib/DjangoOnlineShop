@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', 'django-insecure-3zz^@6himy_%g1l5(ooqnmm@cml2ocyehiob#6f53&!0bjil3y')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"] if DEBUG else config('ALLOWED_HOSTS', cast=list)
+ALLOWED_HOSTS = ["*"]
 
 if DEBUG:
     INTERNAL_IPS = [
@@ -158,7 +158,7 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # OTP
-KAVENEGAR_APIKEY = config('KAVENEGAR_APIKEY', default='')
+KAVENEGAR_APIKEY = ''
 
 # Login
 LOGIN_URL = 'accounts:user_login'
@@ -177,7 +177,7 @@ AWS_STORAGE_BUCKET_NAME = 'alib-shop'  # - Enter your S3 bucket name HERE
 AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
 AWS_S3_FILE_OVERWRITE = False
 AWS_SERVICE_NAME = 's3'
-AWS_LOCAL_STORAGE = 'aws'
+AWS_LOCAL_STORAGE = f'{BASE_DIR}/aws/'
 # Django < 4.2
 '''
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

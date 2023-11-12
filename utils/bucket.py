@@ -33,5 +33,10 @@ class BucketManager:
         self.connection.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=key)
         return True
 
+    def download_object(self, key):
+        with open(settings.AWS_LOCAL_STORAGE + key, 'wb') as f:
+            self.connection.download_fileobj(settings.AWS_STORAGE_BUCKET_NAME, key, f)
+        return True
+
 
 bucket_manager = BucketManager()

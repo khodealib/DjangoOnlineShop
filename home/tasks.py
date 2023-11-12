@@ -12,3 +12,8 @@ def all_bucket_objects_task():
 @shared_task
 def delete_object_task(key):
     bucket_manager.delete_object(key)
+
+
+@shared_task
+def download_object_task(key):
+    bucket_manager.download_object(key)
