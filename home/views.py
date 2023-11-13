@@ -14,7 +14,7 @@ class HomeView(View):
         if category_slug:
             category = get_object_or_404(Category, slug=category_slug)
             products = products.filter(category=category)
-        categories = Category.objects.all()
+        categories = Category.objects.filter(is_sub=False)
         return render(request, 'home/index.html', {'products': products, 'categories': categories})
 
 
