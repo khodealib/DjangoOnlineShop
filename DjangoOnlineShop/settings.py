@@ -47,11 +47,12 @@ INSTALLED_APPS = [
 LOCAL_APPS = [
     "home.apps.HomeConfig",
     "accounts.apps.AccountConfig",
+    'orders.apps.OrdersConfig',
 ]
 
 THIRD_PARTY_APPS = [
     'storages',
-    'django_celery_beat'
+    'django_celery_beat',
 ]
 
 DEV_APPS = [
