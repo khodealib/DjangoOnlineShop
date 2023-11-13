@@ -201,3 +201,8 @@ STORAGES = {
     #     "BACKEND": "storages.backends.s3.S3Storage",
     # },
 }
+
+# Zarinpal confs
+MERCHANT = "00000000-0000-0000-0000-000000000000"
+SANDBOX = True
+
