@@ -43,8 +43,6 @@ class OtpCode(models.Model):
     def is_expire(self):
         expired = self.created + timezone.timedelta(minutes=2)
         now = timezone.now()
-        print(f'now: {now} - expired-at: {expired}')
-        print('*' * 30)
         if now > expired:
             return True
         return False
