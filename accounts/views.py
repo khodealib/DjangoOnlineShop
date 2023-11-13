@@ -9,7 +9,8 @@ from django.views import View
 from DjangoOnlineShop import settings
 from accounts.forms import UserRegistrationForm, VerifyCodeForm, UserLoginForm
 from accounts.models import OtpCode, User
-from utils.otp import send_otp_code, send_otp_code_fake
+from utils.otp import  send_otp_code_fake
+from accounts import tasks
 
 
 class UserRegisterView(View):
@@ -26,7 +27,7 @@ class UserRegisterView(View):
             if settings.DEBUG:
                 send_otp_code_fake(form.cleaned_data['phone'], random_number)
             else:
-                send_otp_code(form.cleaned_data['phone'], random_number)
+                tasks.send_otp_code_task.delay(form.cleaned_data['phone'], random_number)
             OtpCode.objects.create(phone_number=form.cleaned_data['phone'], code=random_number)
             request.session['user_registration_info'] = {
                 'phone_number': form.cleaned_data['phone'],
@@ -94,7 +95,7 @@ class UserLoginView(View):
             if settings.DEBUG:
                 send_otp_code_fake(form.cleaned_data['phone'], random_number)
             else:
-                send_otp_code(form.cleaned_data['phone'], random_number)
+                tasks.send_otp_code_task.delay(form.cleaned_data['phone'], random_number)
             OtpCode.objects.create(phone_number=form.cleaned_data['phone'], code=random_number)
             request.session['user_login_info'] = {
                 'phone_number': form.cleaned_data['phone'],
