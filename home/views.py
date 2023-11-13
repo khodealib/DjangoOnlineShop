@@ -3,15 +3,19 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
 from home import tasks
+from home.models import Product, Category
 from utils.mixins import IsAdminUserMixin
-from home.models import Product
 
 
 class HomeView(View):
 
-    def get(self, request):
+    def get(self, request, category_slug=None):
         products = Product.objects.filter(available=True)
-        return render(request, 'home/index.html', {'products': products})
+        if category_slug:
+            category = get_object_or_404(Category, slug=category_slug)
+            products = products.filter(category=category)
+        categories = Category.objects.all()
+        return render(request, 'home/index.html', {'products': products, 'categories': categories})
 
 
 class ProductDetailView(View):
