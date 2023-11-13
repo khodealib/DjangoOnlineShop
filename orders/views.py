@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
 from home.models import Product
-from orders import payments
+from utils import payments
 from orders.cart import Cart
 from orders.forms import CartAddForm
 from orders.models import Order, OrderItem
