@@ -7,7 +7,6 @@ from orders.cart import Cart
 from orders.forms import CartAddForm
 
 
-# Create your views here.
 class CartView(View):
     def get(self, request):
         cart = Cart(request)
