@@ -31,8 +31,6 @@ def send_request(request, amount, description=description_default, phone=None):
         "Phone": phone,
         "CallbackURL": request.build_absolute_uri('/')[:-1] + str(reverse_lazy('orders:order_pay_verify')),
     }
-    print(str(reverse_lazy('orders:order_pay_verify')))
-    print('*' * 60)
     data = json.dumps(data)
     # set content length by data
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
