@@ -50,7 +50,8 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'storages'
+    'storages',
+    'django_celery_beat'
 ]
 
 DEV_APPS = [
