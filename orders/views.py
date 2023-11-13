@@ -23,3 +23,12 @@ class CartAddView(View):
             cart.add(product, form.cleaned_data['quantity'])
             messages.success(request, f'Add {product.name} to cart successfully.', 'info')
         return redirect('orders:cart')
+
+
+class CartRemoveView(View):
+    def get(self, request, product_id):
+        cart = Cart(request)
+        product = get_object_or_404(Product, id=product_id)
+        cart.remove(product)
+        messages.success(request, f'{product.name} remove from cart.', 'info')
+        return redirect('orders:cart')
