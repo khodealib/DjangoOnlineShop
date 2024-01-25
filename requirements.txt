@@ -1,6 +1,5 @@
 Django==4.2.7
 kavenegar==1.1.2
-python-decouple==3.8
 boto3==1.28.79
 django-storages==1.14.2
 celery==5.3.4
